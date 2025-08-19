@@ -18,20 +18,16 @@ Before you begin, ensure you have the following:
     cd <repository-directory>
     ```
 
-2.  **Configure Environment Variables:**
-    Create a `.env` file by copying the example. This file will store your project-specific configuration.
-    ```bash
-    cp .env.example .env
-    ```
-    Open the `.env` file and replace the placeholder values with your actual GCP Project ID and desired region.
+2.  **Configure Your Project ID:**
+    Open the `.env` file and replace `"your-gcp-project-id"` with your actual Google Cloud Project ID. This is the only variable you need to change for a standard setup.
 
     ```dotenv
     # .env
-    # Replace the placeholder values with your actual Google Cloud Project ID and Region.
-
+    # ...
     export ANTHROPIC_VERTEX_PROJECT_ID="your-gcp-project-id"
-    export ANTHROPIC_VERTEX_REGION="your-gcp-region"
+    # ...
     ```
+    The region is defaulted to `us-central1`. If you need to use a different region, you can change the `ANTHROPIC_VERTEX_REGION` variable to any of the other supported regions listed in the file.
 
 3.  **Make the script executable:**
     ```bash
@@ -47,18 +43,9 @@ Before you begin, ensure you have the following:
 
 The `setup_claude_vertex.sh` script performs the following actions:
 
-1.  **Sources Environment Variables:** Loads the `ANTHROPIC_VERTEX_PROJECT_ID` and `ANTHROPIC_VERTEX_REGION` from your `.env` file.
-2.  **Authenticates with GCP:** Prompts you to log in to your Google Cloud account using `gcloud auth login`.
-3.  **Sets GCP Project:** Configures the `gcloud` CLI to use the project ID specified in your `.env` file.
-4.  **Enables Vertex AI API:** Enables the `aiplatform.googleapis.com` service for your project, which is required to use Vertex AI.
-5.  **Provides Reminders:** Reminds you of the manual steps that cannot be automated, such as ensuring billing is enabled and that you have requested access to the Claude models.
-
-## Post-Setup
-
-After running the script, your GCP environment is configured. To activate the Vertex AI integration within your application, you must set the following environment variable:
-
-```
-export ANTHROPIC_VERTEX_ENABLE=true
-```
-
-You can add this to your `.env` file or set it in your application's environment.
+1.  **Sources Environment Variables:** Loads the configuration from your `.env` file.
+2.  **Validates Configuration:** Checks that a valid `ANTHROPIC_VERTEX_PROJECT_ID` is set and that `ANTHROPIC_VERTEX_REGION` is one of the supported regions.
+3.  **Authenticates with GCP:** Prompts you to log in to your Google Cloud account using `gcloud auth login`.
+4.  **Sets GCP Project:** Configures the `gcloud` CLI to use the project ID specified in your `.env` file.
+5.  **Enables Vertex AI API:** Enables the `aiplatform.googleapis.com` service for your project.
+6.  **Provides Reminders:** Reminds you of the manual steps that cannot be automated.
