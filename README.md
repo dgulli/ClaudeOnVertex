@@ -19,7 +19,7 @@ Before you begin, ensure you have the following:
     ```
 
 2.  **Configure Your Project ID:**
-    Open the `.env` file and replace `"your-gcp-project-id"` with your actual Google Cloud Project ID. This is the only variable you need to change for a standard setup.
+    Open the `.env` file and replace `"your-gcp-project-id"` with your actual Google Cloud Project ID. This is the only variable you need to change. All other settings are pre-configured.
 
     ```dotenv
     # .env
@@ -27,7 +27,6 @@ Before you begin, ensure you have the following:
     export ANTHROPIC_VERTEX_PROJECT_ID="your-gcp-project-id"
     # ...
     ```
-    The region is defaulted to `us-east5`. If you need to use a different region, you can change the `ANTHROPIC_VERTEX_REGION` variable to any of the other supported regions listed in the file.
 
 3.  **Make the script executable:**
     ```bash
@@ -44,8 +43,8 @@ Before you begin, ensure you have the following:
 The `setup_claude_vertex.sh` script performs the following actions:
 
 1.  **Sources Environment Variables:** Loads the configuration from your `.env` file.
-2.  **Validates Configuration:** Checks that a valid `ANTHROPIC_VERTEX_PROJECT_ID` is set and that `ANTHROPIC_VERTEX_REGION` is one of the supported regions.
-3.  **Authenticates with GCP:** Prompts you to log in to your Google Cloud account using `gcloud auth login`.
+2.  **Validates Project ID:** Checks that a valid `ANTHROPIC_VERTEX_PROJECT_ID` is set.
+3.  **Authenticates with GCP:** Checks if you are logged in to `gcloud` and prompts you to log in if necessary.
 4.  **Sets GCP Project:** Configures the `gcloud` CLI to use the project ID specified in your `.env` file.
 5.  **Enables Vertex AI API:** Enables the `aiplatform.googleapis.com` service for your project.
 6.  **Provides Reminders:** Reminds you of the manual steps that cannot be automated.

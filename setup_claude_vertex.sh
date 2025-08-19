@@ -30,19 +30,6 @@ if [ -z "$ANTHROPIC_VERTEX_PROJECT_ID" ] || [ "$ANTHROPIC_VERTEX_PROJECT_ID" == 
   exit 1
 fi
 
-if [ -z "$ANTHROPIC_VERTEX_REGION" ]; then
-  echo "Error: ANTHROPIC_VERTEX_REGION is not set in the .env file."
-  exit 1
-fi
-
-# Validate the region is one of the supported values
-SUPPORTED_REGIONS=("us-east5" "us-central1" "europe-west4" "asia-southeast1")
-if [[ ! " ${SUPPORTED_REGIONS[@]} " =~ " ${ANTHROPIC_VERTEX_REGION} " ]]; then
-    echo "Error: Invalid region '$ANTHROPIC_VERTEX_REGION'."
-    echo "Supported regions are: ${SUPPORTED_REGIONS[*]}"
-    exit 1
-fi
-
 echo "Configuration validated successfully."
 
 # --- Main Setup ---
