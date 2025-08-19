@@ -53,8 +53,15 @@ gcloud config set project $ANTHROPIC_VERTEX_PROJECT_ID
 echo "Step 3: Enabling the Vertex AI API (aiplatform.googleapis.com)..."
 gcloud services enable aiplatform.googleapis.com --project=$ANTHROPIC_VERTEX_PROJECT_ID
 
-# Step 4: Manual Steps Reminder
-echo "Step 4: Manual steps required:"
+# Step 4: Grant IAM permissions for Vertex AI
+echo "Step 4: Granting Vertex AI User role to the current user..."
+ACCOUNT=$(gcloud config get-value account)
+gcloud projects add-iam-policy-binding $ANTHROPIC_VERTEX_PROJECT_ID \
+    --member="user:$ACCOUNT" \
+    --role="roles/aiplatform.user"
+
+# Step 5: Manual Steps Reminder
+echo "Step 5: Manual steps required:"
 echo " - Ensure your GCP account has billing enabled."
 echo " - Request access to Claude models in the Vertex AI Model Garden."
 echo "   (This is a manual step in the Google Cloud Console)"
