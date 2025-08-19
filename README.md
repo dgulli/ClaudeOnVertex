@@ -27,7 +27,7 @@ Before you begin, ensure you have the following:
     export ANTHROPIC_VERTEX_PROJECT_ID="your-gcp-project-id"
     # ...
     ```
-    The region is defaulted to `us-central1`. If you need to use a different region, you can change the `ANTHROPIC_VERTEX_REGION` variable to any of the other supported regions listed in the file.
+    The region is defaulted to `us-east5`. If you need to use a different region, you can change the `ANTHROPIC_VERTEX_REGION` variable to any of the other supported regions listed in the file.
 
 3.  **Make the script executable:**
     ```bash
