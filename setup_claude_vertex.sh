@@ -69,3 +69,9 @@ echo "   (This is a manual step in the Google Cloud Console)"
 echo "---"
 echo "Setup complete!"
 echo "Your environment is now configured to use Claude on Vertex AI."
+
+# Step 6: Set values for claude
+export CLAUDE_CODE_USE_VERTEX=1
+echo "Claude Configured to  use Vertex (Toggle =$CLAUDE_CODE_USE_VERTEX)"
+export CLOUD_ML_REGION=us-east5
+echo "Claude Configured to use $CLOUD_ML_REGION"
